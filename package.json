@@ -1,0 +1,11 @@
+{
+    "name": "memdb",
+    "version": "1.0.0",
+    "description": "An implementation of an in-memory no-SQL database.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Carter Kearns <coder.kearns@gmail.com> (https://github.com/coderkearns)",
+    "license": "ISC"
+}
