@@ -106,7 +106,7 @@ class Table {
      */
     nextId() {
         if (this.isEmpty) return 1
-        return Array.at(this.data, -1).id + 1;
+        return this.data[this.data.length - 1].id + 1;
     }
 
     /**
@@ -167,6 +167,15 @@ class Table {
         const newItem = { id: this.nextId(), ...item };
         this.data.push(newItem);
         return newItem;
+    }
+
+    /** 
+     * Insert multiple items into the table.
+     * @param {...Object} items - The items to insert.
+     * @returns {array} An array of the inserted items.
+    */
+    insertMany(...items) {
+        return items.map(item => this.insert(item));
     }
 
     /**
@@ -271,7 +280,7 @@ class Table {
      * @see {@link Table#loadSync}
      */
     save(file) {
-        fs.writeFile(file, this.toJSON());
+        fs.promises.writeFile(file, this.toJSON());
     }
 
     /**
@@ -298,7 +307,7 @@ class Table {
      */
     static load(file, name = null) {
         name = name || file;
-        return fs.readFile(file).then(data => Table.fromJSON(data, name));
+        return fs.promises.readFile(file).then(data => Table.fromJSON(data, name));
     }
 
     /**

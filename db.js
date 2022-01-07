@@ -1,4 +1,4 @@
-const fs = require("fs").promises
+const fs = require("fs")
 const Table = require('./table');
 
 /**
@@ -37,7 +37,7 @@ class MemDB {
      * @private
      */
     _createTable(table) {
-        Object.defineProperties(this, table.name, {
+        Object.defineProperty(this, table.name, {
             configurable: false,
             enumerable: true,
             writable: false,
@@ -78,7 +78,7 @@ class MemDB {
      * @see {@link MemDB#loadSync}
      */
     save(file, format = false) {
-        return fs.writeFile(file, JSON.stringify(this.toJSON(), null, format ? 2 : 0));
+        return fs.promises.writeFile(file, JSON.stringify(this.toJSON(), null, format ? 2 : 0));
     }
 
     /**
@@ -101,8 +101,8 @@ class MemDB {
      * @see {@link MemDB#save}
      * @see {@link MemDB#saveSync}
      */
-    load(file) {
-        return fs.readFile(file).then(data => MemDB.fromJSON(JSON.parse(data)));
+    static load(file) {
+        return fs.readFile(file).then(data => MemDB.fromJSON(JSON.parse(data || "[]")));
     }
 
     /**
@@ -113,8 +113,8 @@ class MemDB {
      * @see {@link MemDB#save}
      * @see {@link MemDB#saveSync}
      */
-    loadSync(file) {
-        return MemDB.fromJSON(JSON.parse(fs.readFileSync(file)));
+    static loadSync(file) {
+        return MemDB.fromJSON(JSON.parse(fs.readFileSync(file) || "[]"));
     }
 }
 
