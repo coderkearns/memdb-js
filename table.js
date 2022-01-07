@@ -244,7 +244,7 @@ class Table {
     /**
      * Convert the table to a JSON string.
      * @returns {string} A JSON string representing the table.
-     * @see {@link fromJSON}
+     * @see {@link Table#fromJSON}
      */
     toJSON(format = false) {
         return JSON.stringify(this.data, null, format ? 2 : 0);
@@ -256,7 +256,7 @@ class Table {
      * @param {string} [name] - The name of the table. Defaults to "UNNAMED"
      * @returns {Table} A new table with the items from the JSON string.
      * @static
-     * @see {@link toJSON}
+     * @see {@link Table#toJSON}
      */
     static fromJSON(json, name = "UNNAMED") {
         return new Table(name, { data: JSON.parse(json) });
@@ -266,9 +266,9 @@ class Table {
      * Saves the data to a file asynchronously.
      * @param {string} file - The path to the file to save to.
      * @returns {Promise} A promise that resolves when the data is saved.
-     * @see {@link saveSync}
-     * @see {@link load}
-     * @see {@link loadSync}
+     * @see {@link Table#saveSync}
+     * @see {@link Table#load}
+     * @see {@link Table#loadSync}
      */
     save(file) {
         fs.writeFile(file, this.toJSON());
@@ -278,9 +278,9 @@ class Table {
      * Saves the data to a file synchronously.
      * @param {string} file - The path to the file to save to.
      * @returns {void}
-     * @see {@link save}
-     * @see {@link load}
-     * @see {@link loadSync}
+     * @see {@link Table#save}
+     * @see {@link Table#load}
+     * @see {@link Table#loadSync}
      */
     saveSync(file) {
         fs.writeFileSync(file, this.toJSON());
@@ -292,9 +292,9 @@ class Table {
      * @param {string} [name] - The name of the table. Defaults to to file name.
      * @returns {Promise} A promise that resolves when the data is loaded.
      * @static
-     * @see {@link loadSync}
-     * @see {@link save}
-     * @see {@link saveSync}
+     * @see {@link Table#loadSync}
+     * @see {@link Table#save}
+     * @see {@link Table#saveSync}
      */
     static load(file, name = null) {
         name = name || file;
@@ -307,9 +307,9 @@ class Table {
      * @param {string} [name] - The name of the table. Defaults to to file name.
      * @returns {Table} A new table with the items from the JSON string.
      * @static
-     * @see {@link load}
-     * @see {@link save}
-     * @see {@link saveSync}
+     * @see {@link Table#load}
+     * @see {@link Table#save}
+     * @see {@link Table#saveSync}
      */
     static loadSync(file, name = null) {
         name = name || file;
