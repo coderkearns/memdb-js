@@ -1,5 +1,5 @@
 {
-    "name": "memdb",
+    "name": "@coderkearns/memdb",
     "version": "1.0.0",
     "description": "An implementation of an in-memory no-SQL database.",
     "main": "index.js",
